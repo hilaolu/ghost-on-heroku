@@ -1,0 +1,35 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+<header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
+    <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
+        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+        {{#if @blog.navigation}}
+            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
+        {{/if}}
+    </nav>
+<div style="margin-top:8%;font-family:microsoft yahei light;font-weight:100;letter-spacing:5px;color:#fff">
+           <p style="font-size:43px;line-height:40px">{{title}}</p>
+           <p><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="YYYY年MM月DD日"}}</time></p> 
+</div>
+</header>
+<main class="content" role="main">
+    <article class="{{post_class}}">
+
+       
+
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        
+    </article>
+</main>
+
+
+{{/post}}

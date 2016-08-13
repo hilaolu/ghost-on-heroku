@@ -1,0 +1,40 @@
+<script src="https://cdn.uuaua.com/assets/js/pjax.js?v=20160717"></script>
+<script>
+(function() {
+      
+    $(document).on('pjax:success', function() {
+        var a = document.createElement('a')
+        a.href = document.URL
+        var pathname = a.pathname
+            .split('/')
+            .filter(function(value){return !!value})
+            .shift()
+        switch(pathname) {
+            case 'author':
+            case 'tag':
+            case 'page':
+            case undefined:
+                $('body').removeClass('post-template')
+                $('body').addClass('home-template')
+                break
+            default:
+                $('body').removeClass('home-template')
+                $('body').addClass('post-template')
+        }
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://cdn.uuaua.com/assets/js/index.js";
+        head.appendChild(script);        
+    })
+    
+    new Pjax({
+        elements: 'a[href]:not([href^="#"])',
+        selectors: [
+            'title',
+            '.site-wrapper',
+            '.menu-button, .nav-cover, .nav-close'
+        ]
+    })
+})()
+</script>
